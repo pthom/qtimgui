@@ -1,10 +1,11 @@
 cmake_minimum_required (VERSION 3.8.1)
+
 project(qtimgui)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
-find_package(Qt5 COMPONENTS Core Quick Gui Widgets REQUIRED)
+find_package(Qt5 COMPONENTS Core Quick Gui Widgets Svg REQUIRED)
 
 # imgui library: bare imgui
 add_library(imgui
@@ -33,7 +34,7 @@ target_link_libraries(
     qt_imgui_quick 
     PUBLIC
     imgui
-    Qt5::Core Qt5::Quick
+    Qt5::Core Qt5::Quick Qt5::Svg
     )
 if (ANDROID)
     target_link_libraries(qt_imgui_quick PUBLIC log dl GLESv2 z)
@@ -46,7 +47,7 @@ target_link_libraries(
     qt_imgui_widgets
     PUBLIC
     imgui
-    Qt5::Core Qt5::Widgets
+    Qt5::Core Qt5::Widgets Qt5::Svg
     )
 if (ANDROID)
     target_link_libraries(qt_imgui_widgets PUBLIC log dl GLESv2 z)
